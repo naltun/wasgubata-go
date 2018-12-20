@@ -5,8 +5,6 @@
 
 wasgubata fetches geolocation information on an IP address or domain.
 
-*DISCLAIMER*: wasgubata is currently not ready.
-
 ### Installation
 wasgubata is programmed in Go(lang). As such, please install and set up Go. wasgubata is also developed on an Arch Linux computer, and, as such, always uses the most modern version of the compiler. Currently, that is `1.11.3'. Be aware that wasgubata is _not_ tested on earlier versions of Go, although it should work on any computer running 1.7+.
 
