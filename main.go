@@ -8,6 +8,7 @@ import (
 	"net/http"
 	"os"
 	"os/exec"
+	"strconv"
 	"strings"
 )
 
@@ -21,10 +22,17 @@ type GeoLocation struct {
 	Coordinates string `json:"loc,omitempty"`
 }
 
-func geoDomain(s string) string {
-}
+func geoDomain(domain string) string {
+	cmd := exec.Command("dig", "+short", domain)
+	var out bytes.Buffer
+	cmd.Stdout = &out
+	err := cmd.Run()
+	if err != nil {
+		fmt.Printf("[ERROR] %s\n", err)
+		os.Exit(1)
+	}
 
-func geoIP(s string) string {
+	return strings.TrimSpace(out.String())
 }
 
 func main() {
@@ -34,17 +42,24 @@ func main() {
 	}
 	arg := os.Args[1]
 
-	// I need to check which function to call, eg. geoDomain or geoIP
-
-	cmd := exec.Command("dig", "+short", arg)
-	var out bytes.Buffer
-	cmd.Stdout = &out
-	err := cmd.Run()
-	if err != nil {
-		fmt.Printf("[ERROR] %s\n", err)
-		os.Exit(1)
+	var ip string
+	i := strings.Split(arg, ".")
+	if len(i) < 4 {
+		ip = geoDomain(arg)
 	}
-	ip := strings.TrimSpace(out.String())
+
+	for _, v := range i {
+		i, err := strconv.Atoi(v)
+		if err != nil {
+			ip = geoDomain(arg)
+		} else {
+			if i < 0 || i > 255 {
+				ip = geoDomain(arg)
+			} else {
+				ip = arg
+			}
+		}
+	}
 
 	res, err := http.Get("https://ipinfo.io/" + ip + "/geo")
 	if err != nil {
@@ -64,4 +79,6 @@ func main() {
 		fmt.Printf("[ERROR] %s\n", err)
 		os.Exit(1)
 	}
+
+	fmt.Println(loc)
 }
