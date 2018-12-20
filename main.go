@@ -80,7 +80,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("./wgb knows geolocations...\n\n")
+	fmt.Printf("%s knows geolocations...\n\n", os.Args[0])
 	fmt.Println("IP:          ", loc.IP)
 	fmt.Println("City:        ", loc.City)
 	fmt.Println("Region:      ", loc.Region)
