@@ -1,6 +1,8 @@
 # wasgubata
 ###### ./wgb knows geolocations...
 
+[![Go Report Card](https://goreportcard.com/badge/github.com/naltun/wasgubata)](https://goreportcard.com/report/github.com/naltun/wasgubata) [![Shields.io](https://img.shields.io/badge/free%20software-support%20free%2Flibre%20software-yellow.svg)](https://en.wikipedia.org/wiki/Free_software) [![Shields.io](https://img.shields.io/badge/license-GPLv2-blue.svg)](https://opensource.org/licenses/GPL-2.0) [![Shields.io](https://img.shields.io/badge/developed%20on-GNU%2FLinux-purple.svg)](https://www.debian.org/releases/jessie/amd64/ch01s02.html.en)
+
 ### wasguwhat?
 
 wasgubata fetches geolocation information on an IP address or domain.
