@@ -37,10 +37,17 @@ func geoDomain(domain string) string {
 
 func main() {
 	if len(os.Args) == 1 {
-		fmt.Println("[ERROR] No argument supplied. Exiting.")
+		fmt.Println("[ERROR] No argument supplied. To get the help message, run with `help', eg. wgb help.")
 		os.Exit(1)
 	}
 	arg := os.Args[1]
+
+	if arg == "help" {
+		fmt.Printf("wasgubata takes one command-line argument, either an IP address or a domainname.\n\n")
+		fmt.Println("USAGE: wgb {ipaddr|domainname}")
+		fmt.Println("EXAMPLE: wgb gov.vu || wgb 103.7.197.89")
+		os.Exit(0)
+	}
 
 	var ip string
 	i := strings.Split(arg, ".")
