@@ -49,11 +49,11 @@ func main() {
 	}
 
 	for _, v := range i {
-		i, err := strconv.Atoi(v)
+		ii, err := strconv.Atoi(v)
 		if err != nil {
 			ip = geoDomain(arg)
 		} else {
-			if i < 0 || i > 255 {
+			if ii < 0 || ii > 255 {
 				ip = geoDomain(arg)
 			} else {
 				ip = arg
