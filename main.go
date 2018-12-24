@@ -22,7 +22,7 @@ type GeoLocation struct {
 	Coordinates string `json:"loc,omitempty"`
 }
 
-func geoDomain(domain string) string {
+func toIP(domain string) string {
 	cmd := exec.Command("dig", "+short", domain)
 	var out bytes.Buffer
 	cmd.Stdout = &out
@@ -52,16 +52,16 @@ func main() {
 	var ip string
 	i := strings.Split(arg, ".")
 	if len(i) < 4 {
-		ip = geoDomain(arg)
+		ip = toIP(arg)
 	}
 
 	for _, v := range i {
 		ii, err := strconv.Atoi(v)
 		if err != nil {
-			ip = geoDomain(arg)
+			ip = toIP(arg)
 		} else {
 			if ii < 0 || ii > 255 {
-				ip = geoDomain(arg)
+				ip = toIP(arg)
 			} else {
 				ip = arg
 			}
