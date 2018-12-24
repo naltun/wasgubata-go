@@ -90,7 +90,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	fmt.Printf("%s knows geolocations...\n\n", os.Args[0])
+	fmt.Printf("%s knows geolocations...\nFetching for %s...\n\n", os.Args[0], arg)
 	fmt.Println("IP:          ", loc.IP)
 	fmt.Println("City:        ", loc.City)
 	fmt.Println("Region:      ", loc.Region)
