@@ -7,3 +7,4 @@ all:
 
 clean:
 	sudo rm /usr/local/bin/${NAME}
+	rm ${HOME}/.wasgubata.log
