@@ -32,7 +32,10 @@ func toIP(domain string) string {
 		os.Exit(1)
 	}
 
-	return strings.TrimSpace(out.String())
+	s := out.String()
+	ip := strings.Split(s, "\n")[0]
+
+	return ip
 }
 
 func main() {
