@@ -3,6 +3,7 @@ NAME=wgb
 all:
 	go build -o ${NAME}
 	sudo mv ${NAME} /usr/local/bin
+	touch ${HOME}/.wasgubata.log
 
 clean:
-	rm ./wgb
+	sudo rm /usr/local/bin/${NAME}

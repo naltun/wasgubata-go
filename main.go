@@ -28,7 +28,9 @@ func toIP(domain string) string {
 	cmd.Stdout = &out
 	err := cmd.Run()
 	if err != nil {
-		fmt.Printf("[ERROR] %s\n", err)
+		fmt.Println("[ERROR] Something went wrong when running `dig +short " + domain + "' in the terminal")
+		fmt.Println("Do you have the dig command-line tool installed?")
+		logErr(err)
 		os.Exit(1)
 	}
 
@@ -36,6 +38,16 @@ func toIP(domain string) string {
 	ip := strings.Split(s, "\n")[0]
 
 	return ip
+}
+
+func logErr(e error) {
+	b := []byte(e.Error())
+	f := os.Getenv("HOME") + "/.wasgubata.log"
+	err := ioutil.WriteFile(f, b, 0644)
+	if err != nil {
+		fmt.Println("[ERROR] Something went wrong when writing error to log")
+		os.Exit(1)
+	}
 }
 
 func main() {
@@ -73,20 +85,23 @@ func main() {
 
 	res, err := http.Get("https://ipinfo.io/" + ip + "/geo")
 	if err != nil {
-		fmt.Printf("[ERROR]: %s\n", err)
+		fmt.Println("[ERROR]: Something went wrong with the GET request")
+		logErr(err)
 		os.Exit(1)
 	}
 
 	data, err := ioutil.ReadAll(res.Body)
 	if err != nil {
-		fmt.Printf("[ERROR]: %s\n", err)
+		fmt.Println("[ERROR]: Something went wrong when reading the GET response")
+		logErr(err)
 		os.Exit(1)
 	}
 
 	var loc GeoLocation
 	err = json.Unmarshal(data, &loc)
 	if err != nil {
-		fmt.Printf("[ERROR] %s\n", err)
+		fmt.Print("[ERROR] Something went wrong when reading the JSON")
+		logErr(err)
 		os.Exit(1)
 	}
 
