@@ -28,7 +28,7 @@ func toIP(domain string) string {
 	cmd.Stdout = &out
 	err := cmd.Run()
 	if err != nil {
-		fmt.Println("[ERROR] Something went wrong when running `dig +short " + domain + "' in the terminal")
+		fmt.Println("[ERROR] Something went wrong when running `dig +short " + domain + "'")
 		fmt.Println("Do you have the dig command-line tool installed?")
 		logErr(err)
 		os.Exit(1)
