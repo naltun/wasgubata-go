@@ -10,7 +10,7 @@ wasgubata fetches geolocation information on an IP address or domain.
 ![wasgubata in action](https://i.imgur.com/Cjct6gp.png)
 
 ### Installation
-wasgubata is programmed in Go(lang). As such, please install and set up Go. wasgubata is also developed on an Arch Linux computer, and, as such, always uses the most modern version of the compiler. Currently, that is `1.11.3'. Be aware that wasgubata is _not_ tested on earlier versions of Go, although it should work on any computer running 1.7+.
+wasgubata is programmed in Go(lang). As such, please install and set up Go. Be aware that wasgubata is _not_ tested on earlier versions of Go, although it should work on any computer running 1.7+.
 
 wasgubata also requires the `dig' tool to be installed. dig can typically be found with the ISC DNS tools (aka bind tools).
 
@@ -19,6 +19,9 @@ If you have `make' installed, you can simply run the command. If not, run:
 ```shell
 $ go build
 ```
+
+### TODO
+I want to implement native functionality for performing what the `dig` CLI accomplishes.
 
 ### Who
 wasgubata is developed by Noah Altunian (github.com/naltun).
